@@ -1,26 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <NavbarPagina />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavbarPagina from '@/components/Navbar.vue'
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      
+    }
+  },
   components: {
-    HelloWorld
+    NavbarPagina
   }
+  
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
