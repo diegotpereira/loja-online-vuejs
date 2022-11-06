@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PaginaPrincipal from '../views/Principal.vue'
+import paginaPrincipal from '../views/Principal.vue'
+import Mulher from '../views/Mulher.vue'
 
 const routes = [
 
     {
         path: '/',
-        name: "principal",
-        component: PaginaPrincipal
-        
+        name: "paginaPrincipal",
+        component: paginaPrincipal
+    },
+    {
+        path: '/mulher',
+        name: "Mulher",
+        component: Mulher
     }
 ]
 

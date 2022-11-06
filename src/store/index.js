@@ -17,6 +17,14 @@ export default createStore({
                 genero: "Feminino",
                 id: 1
             }
-        ]
+        ],
+        produto: {}
+    },
+
+    getters: {
+
+        buscarMulher: (state) => state.mulher
     }
+
+    
 })

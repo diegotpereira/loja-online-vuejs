@@ -158,7 +158,7 @@ export default {
     border-radius: 5em;
     align-items: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    position: relative;
+    position: relative; 
 }
 
 .navbar .direita .buscarCaixa .search-icon {
