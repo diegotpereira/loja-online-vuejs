@@ -14,8 +14,18 @@ export default createStore({
                 tipo: "Top",
                 cor: "Preto",
                 marca: "Gucci",
-                genero: "Feminino",
+                genero: "mulher",
                 id: 1
+            },
+            {
+                titulo: "Casaco de Seda Esfarrapado",
+                src: require("@/assets/img/women/2.jpeg"),
+                preco: 1379.99,
+                descricao: "moda feminina",
+                tipo: "Top", 
+                cor: "Cinza",
+                marca: "Maison Margiela",
+                genero: "mulher"
             }
         ],
         produto: {}
