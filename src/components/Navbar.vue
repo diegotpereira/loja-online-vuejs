@@ -15,7 +15,7 @@
         </div>
         <div class="direita">
             <div class="buscar">
-                <router-link class="buscarCaixa" to="/">
+                <router-link class="buscarCaixa" to="/pesquisar">
                    <i class="uil uil-search search-icon"></i>
                 </router-link>
             </div>

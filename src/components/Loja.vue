@@ -6,7 +6,7 @@
     <img class="hero-imagem" :src="require(`@/assets/img/${imagem}`)" />
     <div class="loja-secao">
       <div class="outro-cartao" v-for="p in produto" :key="p.id">
-        <router-link :to="{}" class="cartao">
+        <router-link :to="{name: 'ProdutoDetalhes', params: {genero: p.genero, id: p.id},}" class="cartao">
           <img :src="p.src" alt="" class="cartao-imagem" />
           <div class="cartao-botao">
             <div class="cartao-texto">

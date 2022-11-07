@@ -1,5 +1,25 @@
 import { createStore } from "vuex";
 
+const removerAcentos = (string) => {
+    const mapaAcentosHex = {
+        a: /[\xE0-\xE6]/g,
+        e: /[\xE8-\xEB]/g,
+        i: /[\xEC-\xEF]/g,
+        o: /[\xF2-\xF6]/g,
+        u: /[\xF9-\xFC]/g,
+        c: /\xE7/g,
+
+    }
+
+    for(let letra in mapaAcentosHex) {
+
+        var expReg = mapaAcentosHex[letra]
+        string = string.replace(expReg, letra)
+    }
+
+    return string
+}
+
 export default createStore({
 
     state: {
@@ -402,13 +422,61 @@ export default createStore({
                 id: 33,
               },
         ],
-        produto: {}
+        produto: {},
+        produtosFiltrados: null,
+        buscarPorPalavra: null
     },
 
     getters: {
 
         buscarMulher: (state) => state.mulher,
-        buscarHomem: (state) => state.homem
+        
+        buscarHomem: (state) => state.homem,
+        
+        buscarProdutoPorIdHomem: (state) => (id) => 
+           state.homem.find((homem) => homem.id === parseInt(id)),
+
+        buscarProdutoPorIdMulher: (state) => (id) => 
+           state.mulher.find((mulher) => mulher.id === parseInt(id)),
+
+        buscarProdutosFiltrados: (state) => state.produtosFiltrados,
+        
+        todosProdutos: (state) => state.mulher.concat(state.homem),
+
+        getBuscarPorPalavra: (state) => state.buscarPorPalavra
+
+           
+    },
+
+    mutations: {
+        PRODUTOS_FILTRADOS(state, palavra) {
+            if (!palavra || palavra === "{}") {
+                state.buscarPorPalavra = null
+                state.produtosFiltrados = null
+
+            } else {
+                state.buscarPorPalavra = palavra
+                palavra = removerAcentos(palavra.trim().toLowerCase())
+                state.produtosFiltrados = state.mulher
+                   .concat(state.homem)
+                   .filter((produto) => {
+
+                    return (
+                        produto.titulo.toLowerCase().includes(palavra) ||
+                        produto.marca.toLowerCase().includes(palavra) ||
+                        produto.cor.toLowerCase().includes(palavra) ||
+                        produto.tipo.toLowerCase().includes(palavra)
+                    )
+                   })
+            }
+        }
+    },
+
+    actions: {
+
+        filtrarProdutos({ commit }, palavra) {
+            commit("PRODUTOS_FILTRADOS", palavra)
+        }
     }
 
     
