@@ -45,7 +45,8 @@ export default createStore({
                 tipo: "Top", 
                 cor: "Cinza",
                 marca: "Maison Margiela",
-                genero: "mulher"
+                genero: "mulher",
+                id: 2
             },
             {
                 titulo: "Royal Gold Gown",
@@ -477,7 +478,8 @@ export default createStore({
         filtrarProdutos({ commit }, palavra) {
             commit("PRODUTOS_FILTRADOS", palavra)
         }
-    }
+    },
 
+    modules: {}
     
 })

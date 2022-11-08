@@ -3,7 +3,7 @@ import paginaPrincipal from '../views/Principal.vue'
 import Mulher from '../views/Mulher.vue'
 import Homem from '../views/Homem.vue'
 import ProdutoDetalhes from '../views/ProdutoDetalhes.vue'
-import Pesquisar from '../views/Buscar.vue'
+import Buscar from '../views/Buscar.vue'
 
 const routes = [
 
@@ -15,12 +15,14 @@ const routes = [
     {
         path: '/mulher',
         name: "Mulher",
-        component: Mulher
+        component: Mulher,
+        props: true
     },
     {
         path: '/homem',
         name: "Homem",
-        component: Homem
+        component: Homem,
+        props: true
     },
     {
         path: '/loja/:genero/:id',
@@ -29,9 +31,9 @@ const routes = [
         props: true
     },
     {
-        path: '/pesquisar',
-        name: 'Pesquisar',
-        component: Pesquisar,
+        path: '/buscar',
+        name: 'Buscar',
+        component: Buscar,
         props: true
     }
 ]

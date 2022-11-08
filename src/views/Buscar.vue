@@ -28,6 +28,7 @@
 <script>
 export default {
     name: "paginaBuscar",
+    props: ["produto"],
     data() {
         return {
             
@@ -40,11 +41,15 @@ export default {
                     this.$store.getters.buscarProdutosFiltrados ||
                     this.$store.getters.todosProdutos;
 
+                console.log(a);
+
                 return a;
 
             } catch (e) {
                 console.log(e);
             }
+
+            // return true
         },
         buscarPorPalavra: {
             get() {

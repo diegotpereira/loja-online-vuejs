@@ -1,5 +1,5 @@
 <template>
-    <div class="produto">
+    <div v-if="produto" class="produto">
         <div class="gradiente-secao"></div>
         <img :src="produto.src" alt="" class="voltar-imagem" />
         <div class="container">
