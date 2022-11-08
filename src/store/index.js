@@ -487,6 +487,7 @@ export default createStore({
           return
         }
         state.carrinho.push({ produto, quantidade, tamanho, quantidadePreco })
+        console.log(state);
       }
     },
 
@@ -494,12 +495,8 @@ export default createStore({
       filtrarProdutos({ commit }, palavra) {
           commit("PRODUTOS_FILTRADOS", palavra)
       },
-      addProdutoNoCarrinho: (
-        { commit },
-        { produto, quantidade, tamanho, quantidadePreco }
-      ) => {
-        commit("ADD_NO_CARRINHO", { produto, quantidade, tamanho, quantidadePreco})
-      }
+      // addProdutoNoCarrinho: () => {console.log("addNoCarrinho")}
+      addProdutoNoCarrinho:({commit}, { produto, quantidade, tamanho, quantidadePreco}) => { commit("ADD_NO_CARRINHO", { produto, quantidade, tamanho, quantidadePreco})}
     },
 
     modules: {}

@@ -9,7 +9,7 @@
                 <p class="preco">{{ produto.preco }}</p>
                 <p class="descricao">{{ produto.descricao }}</p>
                 <form action="" class="carrinho">
-                    <select name="" id="" class="selecionar">
+                    <select class="selecionar" v-model="this.tamanho">
                         <option value="Tamanho" disabled>Tamanho</option>
                         <option value="pp">PP</option>
                         <option value="P">P</option>
