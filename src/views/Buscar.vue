@@ -9,19 +9,19 @@
             <p class="buscar-resultado"> "{{ buscarPorPalavra }}" - ({{ produtosFiltrados.length }})</p>
         </div>
         <div class="cartao-secao">
-        <div class="outro-cartao" v-for="p in produtosFiltrados" :key="p.id">
-            <router-link :to="{ name: 'ProdutoDetalhes', params: { genero: p.genero, id: p.id },}" class="cartao">
-                <img class="cartao-imagem" :src="p.src" alt="">
-                <div class="cartao-texto">
-                    <p class="item-marca">{{ p.marca }}</p>
-                    <p class="item-titulo">{{ p.titulo }}</p>
-                    <p class="item-cor">{{ p.cor }}</p>
-                    <p class="item-descricao">{{ p.descricao }}</p>
-                    <p class="item-preco">{{ p.preco }}</p>
-                </div>
-            </router-link>
+            <div class="outro-cartao" v-for="p in produtosFiltrados" :key="p.id">
+                <router-link :to="{ name: 'ProdutoDetalhes', params: { genero: p.genero, id: p.id },}" class="cartao">
+                    <img class="cartao-imagem" :src="p.src" alt="" />
+                    <div class="cartao-texto">
+                        <p class="item-marca">{{ p.marca }}</p>
+                        <p class="item-titulo">{{ p.titulo }}</p>
+                        <p class="item-cor">{{ p.cor }}</p>
+                        <p class="item-descricao">{{ p.descricao }}</p>
+                        <p class="item-preco">{{ p.preco }}</p>
+                    </div>
+                </router-link>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
     position: absolute;
     width: 100vw;
     height: 26em;
-    background-image: linear-gradient(transparent, rgb(0, 0, o));
+    background-image: linear-gradient(transparent, rgb(0, 0, 0));
     text-align: center;
     justify-content: center;
     align-content: center;
@@ -90,6 +90,9 @@ export default {
     align-self: center;
     text-align: center;
     letter-spacing: 0.3em;
+    font-family: light;
+    font-weight: 100;
+    text-indent: 0.3em;
     font-size: 3rem;
     color: #fff;
     text-transform: uppercase;
@@ -155,6 +158,7 @@ export default {
     flex-direction: column;
     align-items: center;
     height: fit-content;
+    width: 100%;
     padding: 0.5em 0em 5em 0em;
     background-color: rgba(0, 0, 0);
 }
@@ -162,15 +166,6 @@ export default {
 .cartao-secao .outro-cartao {
     display: flex;
     flex-direction: column;
-    position: relative;
-    transform: transform 0.6s;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.cartao-secao .outro-cartao {
-    display: flex;
-    flex-direction:column;
     position: relative;
     transition: transform 0.6s;
     cursor: pointer;
@@ -205,6 +200,7 @@ export default {
     transform: translateX(-0.6em);
 }
 
+
 .cartao-imagem {
     position: absolute;
     width: inherit;
@@ -219,5 +215,65 @@ export default {
     height: 40vh;
     min-width: 13vw;
     padding: 4em 0em;
+}
+
+.outro-cartao:hover > .cartao > .cartao-imagem {
+    transform: scale(1.1);
+}
+
+.cartao-botao:hover > .cartao-imagem {
+  transform: scale(1.1);
+}
+
+.cartao-texto {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em 1em 2em;
+    font-size: 1rem;
+    word-wrap: break-word;
+    text-align: left;
+    align-self: right;
+    color: white;
+    width: 50vw;
+}
+.cartao-texto > .item-titulo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: rgb(214, 214, 214);
+    margin: 0;
+    margin-bottom: 1em;
+}
+.cartao-texto > .item-marca {
+    margin: 0;
+    font-size: 0.9em;
+    color: rgb(180, 180, 180);
+    font-family: "Valverde", sans-serif;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 2px black;
+}
+
+.cartao-texto > .item-cor {
+    margin: 0;
+    font-size: 0.9em;
+    color: rgb(255, 255, 255);
+    font-family: "Valverde", sans-serif;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 2px black;
+}
+
+.cartao-texto > .item-descricao {
+    font-size: 0.8rem;
+    color: rgb(214, 214, 214);
+}
+
+.cartao-texto > .item-preco {
+    display: flex;
+    justify-content: left;
+    margin-top: 2em;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: white;
+    font-family: "Valverde", sans-serif;
+    font-weight: 100;
 }
 </style>
