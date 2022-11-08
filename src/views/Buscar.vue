@@ -9,8 +9,8 @@
             <p class="buscar-resultado"> "{{ buscarPorPalavra }}" - ({{ produtosFiltrados.length }})</p>
         </div>
         <div class="cartao-secao">
-        <div class="outra-classe" v-for="p in produtosFiltrados" :key="p.id">
-            <router-link to="" class="cartao">
+        <div class="outra-cartao" v-for="p in produtosFiltrados" :key="p.id">
+            <router-link :to="{ name: 'ProdutoDetalhes', params: { genero: p.genero, id: p.id },}" class="cartao">
                 <img class="cartao-imagem" :src="p.src" alt="">
                 <div class="cartao-texto">
                     <p class="item-marca">{{ p.marca }}</p>
@@ -34,13 +34,14 @@ export default {
         }
     },
     computed: {
-
         produtosFiltrados() {
             try {
-                let a = this.$store.getters.buscarProdutosFiltrados ||
-                        this.$store.getters.todosProdutos;
+                let a = 
+                    this.$store.getters.buscarProdutosFiltrados ||
+                    this.$store.getters.todosProdutos;
 
                 return a;
+
             } catch (e) {
                 console.log(e);
             }
@@ -151,5 +152,14 @@ export default {
     height: fit-content;
     padding: 0.5em 0em 5em 0em;
     background-color: rgba(0, 0, 0);
+}
+
+.cartao-secao .outro-cartao {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: transform 0.6s;
+    cursor: pointer;
+    overflow: hidden;
 }
 </style>
