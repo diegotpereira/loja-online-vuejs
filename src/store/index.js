@@ -445,7 +445,19 @@ export default createStore({
         
         todosProdutos: (state) => state.mulher.concat(state.homem),
 
-        getBuscarPorPalavra: (state) => state.buscarPorPalavra
+        getBuscarPorPalavra: (state) => state.buscarPorPalavra,
+
+        carrinhoItemContar: (state) => state.carrinho.length,
+
+        carrinhoTotalPreco: (state) => {
+          let total = 0
+
+          state.carrinho.forEach((item) => {
+            total += item.quantidadePreco
+          })
+
+          return total.toFixed(2)
+        }
 
            
     },
