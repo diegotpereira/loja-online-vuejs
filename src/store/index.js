@@ -425,7 +425,8 @@ export default createStore({
         ],
         produto: {},
         produtosFiltrados: null,
-        buscarPorPalavra: null
+        buscarPorPalavra: null,
+        carrinho: []
     },
 
     getters: {
@@ -450,34 +451,55 @@ export default createStore({
     },
 
     mutations: {
-        PRODUTOS_FILTRADOS(state, palavra) {
-            if (!palavra || palavra === "{}") {
-                state.buscarPorPalavra = null
-                state.produtosFiltrados = null
+      PRODUTOS_FILTRADOS(state, palavra) {
+          if (!palavra || palavra === "{}") {
+              state.buscarPorPalavra = null
+              state.produtosFiltrados = null
 
-            } else {
-                state.buscarPorPalavra = palavra
-                palavra = removerAcentos(palavra.trim().toLowerCase())
-                state.produtosFiltrados = state.mulher
-                   .concat(state.homem)
-                   .filter((produto) => {
+          } else {
+              state.buscarPorPalavra = palavra
+              palavra = removerAcentos(palavra.trim().toLowerCase())
+              state.produtosFiltrados = state.mulher
+                  .concat(state.homem)
+                  .filter((produto) => {
 
-                    return (
-                        produto.titulo.toLowerCase().includes(palavra) ||
-                        produto.marca.toLowerCase().includes(palavra) ||
-                        produto.cor.toLowerCase().includes(palavra) ||
-                        produto.tipo.toLowerCase().includes(palavra)
-                    )
-                   })
-            }
+                  return (
+                      produto.titulo.toLowerCase().includes(palavra) ||
+                      produto.marca.toLowerCase().includes(palavra) ||
+                      produto.cor.toLowerCase().includes(palavra) ||
+                      produto.tipo.toLowerCase().includes(palavra)
+                  )
+                  })
+          }
+      },
+      ADD_NO_CARRINHO: (state, { produto, quantidade, tamanho, quantidadePreco }) => {
+
+        let produtoNoCarrinho = state.carrinho.find((item) => {
+
+          return item.produto.id === produto.id
+        })
+
+        if (produtoNoCarrinho) {
+          produtoNoCarrinho.quantidade += quantidade
+          produtoNoCarrinho.quantidadePreco += produtoNoCarrinho.produto.preco 
+          produtoNoCarrinho.quantidadePreco = Math.round(produtoNoCarrinho.quantidadePreco * 100) / 100
+
+          return
         }
+        state.carrinho.push({ produto, quantidade, tamanho, quantidadePreco })
+      }
     },
 
     actions: {
-
-        filtrarProdutos({ commit }, palavra) {
-            commit("PRODUTOS_FILTRADOS", palavra)
-        }
+      filtrarProdutos({ commit }, palavra) {
+          commit("PRODUTOS_FILTRADOS", palavra)
+      },
+      addProdutoNoCarrinho: (
+        { commit },
+        { produto, quantidade, tamanho, quantidadePreco }
+      ) => {
+        commit("ADD_NO_CARRINHO", { produto, quantidade, tamanho, quantidadePreco})
+      }
     },
 
     modules: {}

@@ -18,7 +18,7 @@
                         <option value="GG">GG</option>
                         <option value="XG">XG</option>
                     </select>
-                    <button class="carrinho-botao">
+                    <button class="carrinho-botao" @click.prevent="addNoCarrinho()"> 
                         Adicionar ao Carrinho
                     </button>
                 </form>
@@ -44,6 +44,21 @@ export default {
             this.produto = this.$store.getters.buscarProdutoPorIdMulher(this.id)
         } else {
             this.produto = this.$store.getters.buscarProdutoPorIdHomem(this.id);
+        }
+    },
+    methods: {
+        addNoCarrinho() {
+
+            if (this.tamanho != "Tamanho") {
+                this.$store.dispatch("addProdutoNoCarrinho", {
+                    produto: this.produto,
+                    quantidade: 1,
+                    quantidadePreco: this.produto.preco,
+                    tamanho: this.tamanho
+                })
+            } else {
+                this.error = true
+            }
         }
     }
 }
