@@ -9,7 +9,7 @@
             <p class="buscar-resultado"> "{{ buscarPorPalavra }}" - ({{ produtosFiltrados.length }})</p>
         </div>
         <div class="cartao-secao">
-        <div class="outra-cartao" v-for="p in produtosFiltrados" :key="p.id">
+        <div class="outro-cartao" v-for="p in produtosFiltrados" :key="p.id">
             <router-link :to="{ name: 'ProdutoDetalhes', params: { genero: p.genero, id: p.id },}" class="cartao">
                 <img class="cartao-imagem" :src="p.src" alt="">
                 <div class="cartao-texto">
@@ -166,5 +166,58 @@ export default {
     transform: transform 0.6s;
     cursor: pointer;
     overflow: hidden;
+}
+
+.cartao-secao .outro-cartao {
+    display: flex;
+    flex-direction:column;
+    position: relative;
+    transition: transform 0.6s;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.cartao-secao .outro-cartao:first-child {
+    border-top: 2px solid rgb(40, 40, 40);
+}
+
+.cartao-secao .outro-cartao .cartao{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 50vw;
+    height: 20em;
+    background: rgb(7, 7, 7);
+    cursor: pointer;
+    border: none;
+    border-bottom: inherit;
+    overflow: hidden;
+    transition: transform 0.6s;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 2em 0em;
+    border-bottom: 2px solid rgb(40, 40, 40);
+}
+
+.outro-cartao:hover {
+    transform: translateX(-0.6em);
+}
+
+.cartao-imagem {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    display: block;
+    object-position: top;
+    transition: transform 0.6s;
+    filter: brightness(80%);
+    position: relative;
+    width: 30vw;
+    height: 40vh;
+    min-width: 13vw;
+    padding: 4em 0em;
 }
 </style>
