@@ -511,7 +511,7 @@ export default createStore({
         { produto, quantidade, tamanho, quantidadePreco }
       ) => {
         commit("ADD_NO_CARRINHO", { produto, quantidade, tamanho, quantidadePreco})
-      }
+      },
     },
 
     modules: {}

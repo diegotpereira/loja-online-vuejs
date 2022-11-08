@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar" :class="{ alterar_cor : scrollPosition > 200 }">
+    <div class="navbar" :class="{ alterar_cor : posicaoScroll > 200 }">
         <a href="" class="esquerda">
             <img src="@/assets/Github.png" alt="">
             <p>DTP Software</p>
@@ -8,8 +8,8 @@
             <div class="logo">Marca</div>
             <div class="navlink">
                 <router-link class="nav-page" to="/">Principal</router-link>
-                <router-link class="nav-page" to="/">Mulher</router-link>
-                <router-link class="nav-page" to="/">Home</router-link>
+                <router-link class="nav-page" to="/mulher">Mulher</router-link>
+                <router-link class="nav-page" to="/homem">Homem</router-link>
                 <router-link class="nav-page" to="/">Sobre</router-link>
             </div>
         </div>
@@ -20,16 +20,38 @@
                 </router-link>
             </div>
             <div class="carrinho">
-                <i class="uil uil-shopping-bag"></i>
-                <span class="notificacao-contar"></span>
+                <i class="uil uil-shopping-bag" @click="alternarCarrinho"></i>
+                <span class="notificacao-contar">{{ carrinhoItemContar }}</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    name: "NavbarPagina"
+    name: "NavbarPagina",
+    emits: ["alternar"],
+    data() {
+        return {
+            posicaoScroll: null
+        }
+    },
+    computed: {
+        ...mapGetters(["carrrinhoItemContar"])
+    },
+    methods: {
+        alternarCarrinho() {
+            this.$emit("alternar")
+        },
+
+        atualizarScroll() {
+            this.posicaoScroll = window.scrollY
+        }
+    },
+    mounted() {
+        window.addEventListener("scroll", this.atualizarScroll)
+    }
 }
 </script>
 
@@ -64,7 +86,7 @@ export default {
     z-index: 1;
 }
 
-.navbar.alterar_cor {
+.navbar .alterar_cor {
     background-color: black;
 }
 

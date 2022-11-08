@@ -4,6 +4,7 @@ import Mulher from '../views/Mulher.vue'
 import Homem from '../views/Homem.vue'
 import ProdutoDetalhes from '../views/ProdutoDetalhes.vue'
 import Buscar from '../views/Buscar.vue'
+import Verificar from '../views/Verificar.vue'
 
 const routes = [
 
@@ -34,6 +35,12 @@ const routes = [
         path: '/buscar',
         name: 'Buscar',
         component: Buscar,
+        props: true
+    },
+    {
+        path: '/verificar',
+        name: 'Verificar',
+        component: Verificar,
         props: true
     }
 ]

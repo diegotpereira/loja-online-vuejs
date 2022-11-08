@@ -1,6 +1,6 @@
 <template>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-  <NavbarPagina @toggle="abrirCarrinho" />
+  <NavbarPagina @alternar="alternarCarrinho" />
   <Carrinho :class="{ open: !abrirCarrinho }" @alternarCarrinho="alternarCarrinho" />
 
   <router-view :class="{ opacity: abrirCarrinho }"/>
@@ -29,3 +29,10 @@ export default {
   
 }
 </script>
+
+<style>
+@font-face {
+  font-family: ITC Cheltenham Std;
+  src: url(./fonts/CheltenhamStd.otf);
+}
+</style>

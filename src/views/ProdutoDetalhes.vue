@@ -48,7 +48,6 @@ export default {
     },
     methods: {
         addNoCarrinho() {
-
             if (this.tamanho != "Tamanho") {
                 this.$store.dispatch("addProdutoNoCarrinho", {
                     produto: this.produto,
