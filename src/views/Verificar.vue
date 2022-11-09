@@ -5,9 +5,9 @@
         </div>
         <img src="@/assets/img/heroSearch.jpg" class="hero-imagem" />
         <div class="secao">
+            <pedidoSucesso v-if="pedido" />
 
-            <div class="cartao-secao">
-
+            <div class="cartao-secao" v-if="!pedido">
                 <div class="outro-cartao" v-for="item in buscarCarrinho" :key="item.produto.id">
 
                     <router-link class="cartao" :to="{ name: 'ProdutoDetalhes', params: { genero: item.produto.genero, id: item.produto.id}, }">
@@ -33,12 +33,12 @@
                     <p class="verificar-titulo"></p>
                 </div>
                 <div class="corpo-verificar">
-                    <p class="texto-caixa"></p>
-                    <p class="texto-caixa"></p>
-                    <p class="texto-caixa"></p>
+                    <p class="texto-caixa">Subtotal : R$ {{ carrinhoTotalPreco }}</p>
+                    <p class="texto-caixa">Entrega : R${{ buscarEntrega }}</p>
+                    <p class="texto-caixa">Taxa : {{ buscarTaxa }}</p>
                 </div>
                 <div class="footer-verificar">
-                    <div class="verificar">Confirmar</div>
+                    <div class="verificar" @click.prevent="pedidoSucesso()">Confirmar</div>
                 </div>
             </div>
         </div>
@@ -47,6 +47,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import pedidoSucesso from '@/components/PedidoSucesso.vue'
+
 export default {
     name: 'paginaVerificar',
     data() {
@@ -67,7 +69,19 @@ export default {
     methods: {
         removerProdutoDoCarrinho(produto) {
             this.$store.dispatch("removerProdutoDoCarrinho", produto)
+        },
+        pedidoSucesso() {
+            if (this.buscarCarrinho.length > 0) {
+                this.pedido = true 
+                this.$store.dispatch("pedidoSucesso")
+
+            } else if ((this.buscarCarrinho.length = 0)) {
+                this.pedido = false
+            }
         }
+    },
+    components: {
+        pedidoSucesso
     }
 }
 </script>

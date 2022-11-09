@@ -523,6 +523,9 @@ export default createStore({
         state.carrinho = state.carrinho.filter((item) => {
           return item.produto.id !== produto.id
         })
+      },
+      PEDIDO_COM_SUCESSO(state) {
+        state.carrinho = []
       }
     },
 
@@ -541,6 +544,9 @@ export default createStore({
 
       removerProdutoDoCarrinho: ({ commit }, produto) => {
         commit("REMOVER_PRODUTO_CARRINHO", produto)
+      },
+      pedidoSucesso ({ commit }) {
+        commit("PEDIDO_COM_SUCESSO")
       }
     },
 
