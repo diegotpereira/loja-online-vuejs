@@ -120,6 +120,74 @@ export default {
     position: relative;
 }
 
+.verificar-cartao {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    height: fit-content;
+    background-color: rgb(240, 240, 240);
+    border-radius: 1em;
+    align-items: center;
+    position: inherit;
+    margin: 1em 2em;
+    border: 4px solid #333;
+}
+
+.verificar-cartao .cabecalho-verificar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    width: 15vw;
+    height: fit-content;
+    border-radius: 1em 1em 1em 1em;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    background-color: #d4d4d4;
+}
+
+.verificar-cartao .cabecalho-verificar .verificar-titulo {
+    position: relative;
+    font-family: "Magisho", sans-serif;
+    font-size: 1.3em;
+    width: 10vw;
+    height: fit-content;
+    margin: 0.8em 0;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.verificar-cartao .corpo-verificar {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.verificar-cartao .corpo-verificar .texto-caixa {
+    position: relative;
+    font-family: "Magisho", sans-serif;
+    font-size: 0.9rem;
+    width: 14vw;
+    height: fit-content;
+    padding: 0.8em 0em;
+    margin: 0;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
 .cartao-secao .outro-cartao {
     display: flex;
     flex-direction: column;
