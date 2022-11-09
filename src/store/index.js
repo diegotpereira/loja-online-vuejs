@@ -457,7 +457,9 @@ export default createStore({
           })
 
           return total.toFixed(2)
-        }
+        },
+
+        buscarCarrinho: (state) => state.carrinho
 
            
     },
