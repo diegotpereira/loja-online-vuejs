@@ -426,7 +426,9 @@ export default createStore({
         produto: {},
         produtosFiltrados: null,
         buscarPorPalavra: null,
-        carrinho: []
+        carrinho: [],
+        entrega: 15,
+        taxa: 5
     },
 
     getters: {
@@ -459,7 +461,21 @@ export default createStore({
           return total.toFixed(2)
         },
 
-        buscarCarrinho: (state) => state.carrinho
+        buscarCarrinho: (state) => state.carrinho,
+
+        carrinhoVerificarPreco: (state) => {
+          let total = 0
+
+          state.carrinho.forEach((item) => {
+            total = item.quantidadePreco + state.entrega
+            total = total + (total * state.taxa) / 100
+          })
+
+          return total.toFixed(2)
+        },
+        buscarTaxa: (state) => state.taxa,
+
+        buscarEntrega: (state) => state.entrega
 
            
     },
@@ -502,6 +518,11 @@ export default createStore({
         }
         state.carrinho.push({ produto, quantidade, tamanho, quantidadePreco })
         console.log(state);
+      },
+      REMOVER_PRODUTO_CARRINHO: (state, produto) => {
+        state.carrinho = state.carrinho.filter((item) => {
+          return item.produto.id !== produto.id
+        })
       }
     },
 
@@ -517,6 +538,10 @@ export default createStore({
       ) => {
         commit("ADD_NO_CARRINHO", { produto, quantidade, tamanho, quantidadePreco})
       },
+
+      removerProdutoDoCarrinho: ({ commit }, produto) => {
+        commit("REMOVER_PRODUTO_CARRINHO", produto)
+      }
     },
 
     modules: {}

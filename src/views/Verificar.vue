@@ -24,7 +24,7 @@
                         </div>
                     </router-link>
                     <div class="cancelar">
-                        <i class="uil uil-trash-alt"></i>
+                        <i class="uil uil-trash-alt" @click.prevent="removerProdutoDoCarrinho(item.produto)"></i>
                     </div>
                 </div>
             </div>
@@ -56,13 +56,18 @@ export default {
     },
     computed: {
         ...mapGetters([
-
-            "buscarCarrinho"
+            "buscarCarrinho",
+            "carrinhoTotalPreco",
+            "carrinhoVerificarPreco",
+            "buscarTaxa",
+            "buscarEntrega"
 
         ])
     },
     methods: {
-
+        removerProdutoDoCarrinho(produto) {
+            this.$store.dispatch("removerProdutoDoCarrinho", produto)
+        }
     }
 }
 </script>
